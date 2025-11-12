@@ -1,11 +1,8 @@
 import { api } from "./api-client"
+import type { Category } from "./get-service-category"
 
 export interface GetServiceCategoriesResponse {
-  categories: {
-    id: string
-    name: string
-    description: string | null
-  }[]
+  categories: Category[]
 }
 
 export async function getServiceCategories() {
