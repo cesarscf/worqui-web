@@ -28,9 +28,7 @@ export function App() {
           mutations: {
             onError(error) {
               if (error instanceof AxiosError) {
-                const message =
-                  error.response?.data?.message ??
-                  unknownError
+                const message = error.response?.data?.message ?? unknownError
 
                 toast.error(message)
                 return
