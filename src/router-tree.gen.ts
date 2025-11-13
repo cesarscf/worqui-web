@@ -8,61 +8,61 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-import { Route as rootRouteImport } from "./pages/__root"
-import { Route as IndexRouteImport } from "./pages/index"
-import { Route as OIdIndexRouteImport } from "./pages/o/$id/index"
+import { Route as rootRouteImport } from './pages/__root'
+import { Route as IndexRouteImport } from './pages/index'
+import { Route as CustomerOIdIndexRouteImport } from './pages/_customer/o/$id/index'
 
 const IndexRoute = IndexRouteImport.update({
-  id: "/",
-  path: "/",
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const OIdIndexRoute = OIdIndexRouteImport.update({
-  id: "/o/$id/",
-  path: "/o/$id/",
+const CustomerOIdIndexRoute = CustomerOIdIndexRouteImport.update({
+  id: '/_customer/o/$id/',
+  path: '/o/$id/',
   getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
-  "/": typeof IndexRoute
-  "/o/$id": typeof OIdIndexRoute
+  '/': typeof IndexRoute
+  '/o/$id': typeof CustomerOIdIndexRoute
 }
 export interface FileRoutesByTo {
-  "/": typeof IndexRoute
-  "/o/$id": typeof OIdIndexRoute
+  '/': typeof IndexRoute
+  '/o/$id': typeof CustomerOIdIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  "/": typeof IndexRoute
-  "/o/$id/": typeof OIdIndexRoute
+  '/': typeof IndexRoute
+  '/_customer/o/$id/': typeof CustomerOIdIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: "/" | "/o/$id"
+  fullPaths: '/' | '/o/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: "/" | "/o/$id"
-  id: "__root__" | "/" | "/o/$id/"
+  to: '/' | '/o/$id'
+  id: '__root__' | '/' | '/_customer/o/$id/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  OIdIndexRoute: typeof OIdIndexRoute
+  CustomerOIdIndexRoute: typeof CustomerOIdIndexRoute
 }
 
-declare module "@tanstack/react-router" {
+declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    "/": {
-      id: "/"
-      path: "/"
-      fullPath: "/"
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    "/o/$id/": {
-      id: "/o/$id/"
-      path: "/o/$id"
-      fullPath: "/o/$id"
-      preLoaderRoute: typeof OIdIndexRouteImport
+    '/_customer/o/$id/': {
+      id: '/_customer/o/$id/'
+      path: '/o/$id'
+      fullPath: '/o/$id'
+      preLoaderRoute: typeof CustomerOIdIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -70,7 +70,7 @@ declare module "@tanstack/react-router" {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  OIdIndexRoute: OIdIndexRoute,
+  CustomerOIdIndexRoute: CustomerOIdIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
